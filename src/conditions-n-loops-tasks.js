@@ -159,8 +159,61 @@ function convertToRomanNumerals(num) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let result = '';
+
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case '-':
+        result += 'minus ';
+        break;
+      case '1':
+        result += 'one ';
+        break;
+      case '2':
+        result += 'two ';
+        break;
+      case '3':
+        result += 'three ';
+        break;
+      case '4':
+        result += 'four ';
+        break;
+      case '5':
+        result += 'five ';
+        break;
+      case '6':
+        result += 'six ';
+        break;
+      case '7':
+        result += 'seven ';
+        break;
+      case '8':
+        result += 'eight ';
+        break;
+      case '9':
+        result += 'nine ';
+        break;
+      case '0':
+        result += 'zero ';
+        break;
+      case '.':
+        result += 'point ';
+        break;
+      case ',':
+        result += 'point ';
+        break;
+      default:
+    }
+  }
+
+  const str = result;
+  let newStr = '';
+
+  for (let i = 0; i < str.length - 1; i += 1) {
+    newStr += str[i];
+  }
+  return newStr;
 }
 
 /**
@@ -354,8 +407,37 @@ function shuffleChar(/* str, iterations */) {
  * @param {number} number The source number
  * @returns {number} The nearest larger number, or original number if none exists.
  */
-function getNearestBigger(/* number */) {
-  throw new Error('Not implemented');
+function getNearestBigger(number) {
+  let num = number;
+  const numArr = [];
+
+  while (num > 0) {
+    numArr.unshift(num % 10);
+    num = Math.floor(num / 10);
+  }
+
+  let index = -1;
+  for (let i = numArr.length - 2; i >= 0; i -= 1) {
+    if (+numArr[i] < +numArr[i + 1]) {
+      index = i;
+      break;
+    }
+  }
+
+  if (index === -1) return number;
+
+  let minIndex = index + 1;
+  for (let i = index + 2; i < numArr.length; i += 1) {
+    if (numArr[i] < numArr[minIndex] && numArr[i] > numArr[index]) {
+      minIndex = i;
+    }
+  }
+
+  [numArr[index], numArr[minIndex]] = [numArr[minIndex], numArr[index]];
+
+  const rightPart = numArr.splice(index + 1).sort((a, b) => a - b);
+
+  return +[...numArr, ...rightPart].join('');
 }
 
 module.exports = {
