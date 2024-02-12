@@ -69,8 +69,18 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  const firstStep = Math.abs(queen.x - king.x);
+  const secondStep = Math.abs(queen.y - king.y);
+
+  switch (true) {
+    case queen.x === king.x || queen.y === king.y:
+      return true;
+    case firstStep === secondStep:
+      return true;
+    default:
+      return false;
+  }
 }
 
 /**
@@ -386,8 +396,18 @@ function rotateMatrix(matrix) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+function sortByAsc(arr) {
+  const newArr = arr;
+  for (let j = newArr.length - 1; j > 0; j -= 1) {
+    for (let i = 0; i < j; i += 1) {
+      if (newArr[i] > newArr[i + 1]) {
+        const temp = arr[i];
+        newArr[i] = arr[i + 1];
+        newArr[i + 1] = temp;
+      }
+    }
+  }
+  return arr;
 }
 
 /**
@@ -409,6 +429,24 @@ function sortByAsc(/* arr */) {
  */
 function shuffleChar(/* str, iterations */) {
   throw new Error('Not implemented');
+  // let totalStr = str;
+  // function f1(str2, newIterations) {
+  //   if (newIterations === 0) {
+  //     return str2;
+  //   }
+  //   let newStrOne = '';
+  //   let newStrTwo = '';
+  //   for (let i = 0; i < str2.length; i += 1) {
+  //     if (i % 2 !== 0) {
+  //       newStrTwo += str2[i];
+  //     } else {
+  //       newStrOne += str2[i];
+  //     }
+  //   }
+  //   totalStr = newStrOne + newStrTwo;
+  //   return f1(totalStr, newIterations - 1);
+  // }
+  // return f1(totalStr, iterations - 1);
 }
 
 /**
