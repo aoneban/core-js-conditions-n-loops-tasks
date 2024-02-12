@@ -429,23 +429,21 @@ function sortByAsc(arr) {
  */
 function shuffleChar(str, iterations) {
   let totalStr = str;
-  function f1(str2, newIterations) {
-    if (newIterations === 0) {
-      return str2;
-    }
+
+  for (let iter = 0; iter < iterations; iter += 1) {
     let newStrOne = '';
     let newStrTwo = '';
-    for (let i = 0; i < str2.length; i += 1) {
+    for (let i = 0; i < totalStr.length; i += 1) {
       if (i % 2 !== 0) {
-        newStrTwo += str2[i];
+        newStrTwo += totalStr[i];
       } else {
-        newStrOne += str2[i];
+        newStrOne += totalStr[i];
       }
     }
     totalStr = newStrOne + newStrTwo;
-    return f1(totalStr, newIterations - 1);
   }
-  return f1(totalStr, iterations - 1);
+
+  return totalStr;
 }
 
 /**
